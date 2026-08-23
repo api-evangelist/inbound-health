@@ -1,17 +1,83 @@
 aid: inbound-health
 name: Inbound Health
-description: 'Inbound Health is a company surfaced via the API Evangelist harvest backlog (source: secondary-market)
-  and added to the network as a stub for full-pipeline profiling.'
+description: >-
+  Inbound Health was a Minneapolis, Minnesota company that enabled health systems and health
+  plans to deliver hospital-level and skilled-nursing-level care in patients' homes. It was spun
+  out of Allina Health's own Hospital-at-Home and SNF-at-Home programs in October 2022 with $20
+  million from Flare Capital Partners, and was led by co-founder and chief executive Dave Kerwar,
+  previously chief product officer at Mount Sinai Health System, with Dr. Chi Huang as chief
+  medical officer and Dave Zimmerman as chief operating officer. The company raised a $30 million
+  Series B in September 2023 led by HealthQuest Capital, and in February 2024 released Inbound
+  InHome, a proprietary patient-management and analytics platform for advanced care in the home:
+  AI/ML-assisted identification and eligibility screening of candidate patients, device-agnostic
+  biometric monitoring across devices, wearables and in-home sensors, a virtual care module
+  carrying real-time video, audio, text and alerting between patient and care team, a workflow
+  application automating logistics across the care episode, supply-chain management, and
+  integration points into multiple EMRs. Inbound Health ceased operations in December 2025 after
+  regulatory uncertainty over the federal Acute Hospital Care at Home (AHCAH) waiver stalled its
+  next financing round; MedArrive acquired its AI-backed care-navigation technology assets in
+  March 2026. Inbound InHome was sold only under signed health-system and health-plan agreements,
+  and no public developer portal, API reference, SDK, or machine-readable specification (OpenAPI,
+  AsyncAPI, GraphQL SDL, MCP manifest or A2A agent card) was ever published on an Inbound Health
+  host. Both inboundhealth.com and www.inboundhealth.com now fail at the origin behind Cloudflare
+  (HTTP 526) and every api/docs/developer/app/portal/status subdomain has been removed from DNS,
+  so there is no live API surface to catalog. This profile is retained as a historical record.
 url: https://raw.githubusercontent.com/api-evangelist/inbound-health/refs/heads/main/apis.yml
 x-type: company
 x-source: harvest:secondary-market
 x-tier: stub
-x-tier-reason: harvest
-specificationVersion: '0.20'
+x-tier-reason: defunct-no-api-surface
+x-status: defunct
+x-founded: '2022'
+x-headquarters: Minneapolis, Minnesota, United States
+x-shutdown-month: '2025-12'
+x-shutdown-note: >-
+  Ceased operations in December 2025 (first reported 2025-12-01) after failing to raise
+  additional capital amid regulatory uncertainty over the federal Acute Hospital Care at Home
+  (AHCAH) waiver. CEO Dave Kerwar said all patients under active care were escalated back to
+  brick-and-mortar facilities, leaving zero census. MedArrive announced on 2026-03-19 that it had
+  acquired Inbound Health's AI-backed care-navigation technology assets; financial terms were not
+  disclosed.
+x-acquirer: MedArrive
+x-domain: inboundhealth.com
+x-domain-status: dead-origin
+x-domain-note: >-
+  inboundhealth.com is still registered to the company (GoDaddy, created 2018-01-06, registry
+  expiry 2027-01-06, record updated 2026-01-07) and is still fronted by Cloudflare with a valid
+  Google Trust Services certificate, but the origin behind it is gone. Every HTTPS path — the
+  root, /openapi.json, every /.well-known/ path, and a nonsense control path — returns the same
+  16-byte Cloudflare HTTP 526 body; over plain HTTP the same host returns a byte-identical
+  1,957-byte "Site is not available" page with HTTP 404 on every path. MX still points at
+  Microsoft 365, which is why the zone is still maintained. Because the site is confirmed dead it
+  is deliberately NOT wired as a Website pointer. The previous Website pointer on this profile
+  (https://www.nasdaqprivatemarket.com/) was the secondary-market venue this company was harvested
+  from, not the company's own web presence, and has been removed — see
+  https://github.com/api-evangelist/roadmap/issues/56.
+specificationVersion: '0.23'
 created: '2026-08-23'
 modified: '2026-08-23'
 tags:
 - Company
+- Defunct
+- Healthcare
+- Hospital at Home
+- Home Health
+- Remote Patient Monitoring
+- Value Based Care
+- Care Coordination
+- Health Systems
+- Digital Health
+tags_raw:
+- Company
+- Defunct
+- Healthcare
+- Hospital-at-Home
+- Home Health
+- Remote Patient Monitoring
+- Value-Based Care
+- Care Coordination
+- Health Systems
+- Digital Health
 apis: []
 maintainers:
 - FN: Kin Lane
@@ -19,5 +85,34 @@ maintainers:
 - FN: APIs.json
   email: info@apis.io
 common:
-- type: Website
-  url: https://www.nasdaqprivatemarket.com/
+- type: DomainSecurity
+  url: security/inbound-health-domain-security.yml
+x-enrichment:
+  date: '2026-08-23'
+  status: minimal
+  artifacts_added: 2
+  pass: local-v1
+x-coverage:
+  state: none
+  reason: defunct
+  detail: >-
+    Inbound Health ceased operations in December 2025 and MedArrive bought its care-navigation
+    technology assets in March 2026; inboundhealth.com now answers Cloudflare HTTP 526 on every
+    HTTPS path because its origin is gone, plain HTTP returns an identical "Site is not
+    available" 404 page on every path including a nonsense control, none of the
+    api/docs/developer/app/portal/status subdomains resolve in DNS, and the InboundHealth GitHub
+    organization has zero public repositories, so there is no surface left to profile.
+  evidence:
+  - url: https://inboundhealth.com/
+    status: 526
+  - url: https://inboundhealth.com/openapi.json
+    status: 526
+  - url: https://inboundhealth.com/.well-known/agent-card.json
+    status: 526
+  - url: https://inboundhealth.com/llms.txt
+    status: 526
+  - url: http://inboundhealth.com/zzz-does-not-exist-9f3a
+    status: 404
+  - url: https://api.github.com/users/InboundHealth
+    status: 200
+  checked: '2026-08-23'

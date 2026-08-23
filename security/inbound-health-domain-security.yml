@@ -1,0 +1,65 @@
+generated: '2026-08-23'
+method: probed
+source: dig + TLS handshake + HTTP HEAD against inboundhealth.com, 2026-08-23
+note: >-
+  Probed after the company ceased operations (December 2025). The domain is retained and the
+  Cloudflare edge still terminates TLS with a valid certificate, but the origin is gone, so every
+  HTTPS request ends in a Cloudflare 526. Mail is still routed to Microsoft 365, which is why the
+  DNS zone is still being maintained. Recorded as evidence of a retained-but-dead domain, not as
+  evidence of a live API host.
+hosts:
+- host: inboundhealth.com
+  https: true
+  tls_version: TLSv1.3
+  cert_issuer: Google Trust Services WE1
+  cert_expires: 'Oct 18 18:52:07 2026 GMT'
+  edge: cloudflare
+  origin_reachable: false
+  http_status: 526
+  hsts: false
+  x_frame_options: SAMEORIGIN
+  referrer_policy: same-origin
+- host: www.inboundhealth.com
+  https: true
+  tls_version: TLSv1.3
+  cert_issuer: Google Trust Services WE1
+  cert_expires: 'Oct 17 22:40:45 2026 GMT'
+  edge: cloudflare
+  origin_reachable: false
+  http_status: 526
+  hsts: false
+domains:
+- domain: inboundhealth.com
+  registrar: GoDaddy.com, LLC
+  created: '2018-01-06'
+  registry_expiry: '2027-01-06'
+  last_updated: '2026-01-07'
+  nameservers: [ns15.domaincontrol.com, ns16.domaincontrol.com]
+  a_records: [141.193.213.20, 141.193.213.21]
+  dnssec: false
+  caa: []
+  spf: true
+  spf_records:
+  - 'v=spf1 include:spf.protection.outlook.com include:spf.loxo.co -all'
+  - 'v=spf1 include:_spf.brightmove.com ~all'
+  spf_defect: >-
+    TWO v=spf1 TXT records are published on the same domain. RFC 7208 s3.2 requires exactly one;
+    a receiver that finds more than one MUST return permerror, so SPF evaluation for this domain
+    fails outright. The two records also disagree on the qualifier (-all vs ~all).
+  dmarc: false
+  dmarc_policy: null
+  mx: [inboundhealth-com.mail.protection.outlook.com]
+  mail_still_routed: true
+findings:
+- id: origin-down
+  detail: All HTTPS paths return Cloudflare 526; the site has no reachable origin.
+- id: no-dnssec
+  detail: No DNSKEY record published.
+- id: no-caa
+  detail: No CAA record; certificate issuance is unconstrained.
+- id: no-dmarc
+  detail: No _dmarc TXT record, so no policy governs mail claiming to be from this domain.
+- id: duplicate-spf
+  detail: Two conflicting v=spf1 records make SPF permerror for the whole domain.
+- id: no-hsts
+  detail: No Strict-Transport-Security header on the edge response.

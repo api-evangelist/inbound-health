@@ -1,0 +1,68 @@
+generated: '2026-08-23'
+method: probed
+source: https://inboundhealth.com/.well-known/
+note: >-
+  Inbound Health ceased operations in December 2025. The company still holds
+  inboundhealth.com (GoDaddy, registry expiry 2027-01-06, record updated 2026-01-07) and the
+  domain is still fronted by Cloudflare with a valid Google Trust Services certificate, but the
+  ORIGIN behind it is gone: every HTTPS request — root, spec paths, every /.well-known/ path and
+  a nonsense control path alike — returns Cloudflare HTTP 526 ("Invalid SSL certificate" at the
+  origin) with the same 16-byte "error code: 526" body. Over plain HTTP the same host answers a
+  byte-identical 1,957-byte "Site is not available" page with HTTP 404 on every path, including
+  the control path. Nothing was fetched and nothing was saved. hit_count is 0 and NO WellKnown
+  or SecurityTxt pointer is emitted — this file records an absence, not a presence.
+hit_count: 0
+hosts:
+- host: https://inboundhealth.com
+  documents:
+  - path: /.well-known/security.txt
+    status: 526
+  - path: /.well-known/openid-configuration
+    status: 526
+  - path: /.well-known/oauth-authorization-server
+    status: 526
+  - path: /.well-known/api-catalog
+    status: 526
+  - path: /.well-known/ai-plugin.json
+    status: 526
+  - path: /.well-known/agent-card.json
+    status: 526
+  - path: /.well-known/agent.json
+    status: 526
+contract_discovery:
+- path: /openapi.json
+  status: 526
+- path: /openapi.yaml
+  status: 526
+- path: /swagger.json
+  status: 526
+- path: /api-docs
+  status: 526
+- path: /docs
+  status: 526
+- path: /llms.txt
+  status: 526
+soft_404_control:
+  url: https://inboundhealth.com/zzz-does-not-exist-9f3a
+  status: 526
+  bytes: 16
+  identical_to_every_other_path: true
+http_control:
+  url: http://inboundhealth.com/zzz-does-not-exist-9f3a
+  status: 404
+  bytes: 1957
+  identical_to_every_other_path: true
+  body_title: Site is not available
+subdomains_probed:
+  note: >-
+    None of the conventional API/developer/status hostnames resolve in DNS (NXDOMAIN / no A
+    record), so there was nothing to probe behind them.
+  hosts:
+  - {host: api.inboundhealth.com, dns: no-record}
+  - {host: docs.inboundhealth.com, dns: no-record}
+  - {host: developer.inboundhealth.com, dns: no-record}
+  - {host: developers.inboundhealth.com, dns: no-record}
+  - {host: app.inboundhealth.com, dns: no-record}
+  - {host: portal.inboundhealth.com, dns: no-record}
+  - {host: my.inboundhealth.com, dns: no-record}
+  - {host: status.inboundhealth.com, dns: no-record}

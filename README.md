@@ -64,5 +64,45 @@
 > Full detail: **[Where this data comes from](https://apievangelist.com/about/where-our-data-comes-from)**
 <!-- API-EVANGELIST-PROVENANCE:END -->
 
-Inbound Health is a company surfaced via the API Evangelist harvest backlog (source: secondary-market) and added to the network as a stub for full-pipeline profiling.
-- https://www.nasdaqprivatemarket.com/
+Inbound Health was a Minneapolis, Minnesota company that enabled health systems and health plans to
+deliver hospital-level and skilled-nursing-level care in patients' homes. It was spun out of Allina
+Health's Hospital-at-Home and SNF-at-Home programs in October 2022 with $20 million from Flare
+Capital Partners, raised a $30 million Series B led by HealthQuest Capital in September 2023, and in
+February 2024 released **Inbound InHome** — a patient-management and analytics platform combining
+AI/ML patient identification, device-agnostic biometric monitoring, a virtual care module, episode
+workflow automation, supply-chain management, and integration points into multiple EMRs.
+
+**The company is defunct.** Inbound Health ceased operations in December 2025 after regulatory
+uncertainty over the federal Acute Hospital Care at Home (AHCAH) waiver stalled its next financing
+round, and MedArrive acquired its AI-backed care-navigation technology assets in March 2026.
+
+## API surface
+
+None. Inbound InHome was sold only under signed health-system and health-plan agreements; no public
+developer portal, API reference, SDK, or machine-readable specification (OpenAPI, AsyncAPI, GraphQL
+SDL, MCP manifest or A2A agent card) was ever published on an Inbound Health host.
+
+Probed 2026-08-23:
+
+| Probe | Result |
+|---|---|
+| `https://inboundhealth.com/` | `526` — Cloudflare edge is live, origin is gone |
+| `https://inboundhealth.com/openapi.json` (and `/swagger.json`, `/api-docs`, `/docs`, `/llms.txt`) | `526` |
+| every `https://inboundhealth.com/.well-known/*` path | `526` |
+| `http://inboundhealth.com/<any path>` | `404`, byte-identical 1,957-byte "Site is not available" page |
+| `api.` / `docs.` / `developer.` / `app.` / `portal.` / `status.inboundhealth.com` | no DNS record |
+| `https://github.com/InboundHealth` | organization exists, **0 public repositories** |
+
+The domain is still registered to the company (GoDaddy, registry expiry 2027-01-06) and MX still
+routes to Microsoft 365, but nothing is served. Because the site is confirmed dead it is
+deliberately **not** wired as a `Website` pointer. The previous `Website` pointer on this profile
+(`https://www.nasdaqprivatemarket.com/`) was the secondary-market venue this company was harvested
+from — not Inbound Health's own web presence — and has been removed.
+
+## Artifacts
+
+- `well-known/inbound-health-well-known.yml` — the full `/.well-known/` and contract-discovery
+  probe, including the negative controls. Records an absence; no `WellKnown` pointer is emitted.
+- `security/inbound-health-domain-security.yml` — DNS/TLS posture of the retained domain: no
+  DNSSEC, no CAA, no DMARC, no HSTS, and **two conflicting `v=spf1` records**, which makes SPF
+  evaluation permerror for the whole domain under RFC 7208.
