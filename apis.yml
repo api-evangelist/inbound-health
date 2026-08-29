@@ -53,6 +53,17 @@ x-domain-note: >-
   (https://www.nasdaqprivatemarket.com/) was the secondary-market venue this company was harvested
   from, not the company's own web presence, and has been removed — see
   https://github.com/api-evangelist/roadmap/issues/56.
+deliveryModel:
+  model: unknown
+  open_source: false
+  commercial: false
+  callable_host: false
+  label: Delivery model not determined — needs a product licence on record
+  confidence: low
+  source:
+  - none
+  generated: '2026-08-28'
+  method: derived
 specificationVersion: '0.23'
 created: '2026-08-23'
 modified: '2026-08-23'
