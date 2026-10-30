@@ -64,45 +64,38 @@
 > Full detail: **[Where this data comes from](https://apievangelist.com/about/where-our-data-comes-from)**
 <!-- API-EVANGELIST-PROVENANCE:END -->
 
-Inbound Health was a Minneapolis, Minnesota company that enabled health systems and health plans to
-deliver hospital-level and skilled-nursing-level care in patients' homes. It was spun out of Allina
-Health's Hospital-at-Home and SNF-at-Home programs in October 2022 with $20 million from Flare
-Capital Partners, raised a $30 million Series B led by HealthQuest Capital in September 2023, and in
-February 2024 released **Inbound InHome** — a patient-management and analytics platform combining
-AI/ML patient identification, device-agnostic biometric monitoring, a virtual care module, episode
-workflow automation, supply-chain management, and integration points into multiple EMRs.
+> **No longer operating.** This company or product has shut down, been discontinued, or been deprecated. This profile is kept as a historical record and is not maintained or rated.
 
-**The company is defunct.** Inbound Health ceased operations in December 2025 after regulatory
-uncertainty over the federal Acute Hospital Care at Home (AHCAH) waiver stalled its next financing
-round, and MedArrive acquired its AI-backed care-navigation technology assets in March 2026.
+Inbound Health was a Minneapolis, Minnesota company that enabled health systems and health plans to deliver hospital-level and skilled-nursing-level care in patients' homes. It was spun out of Allina Health's own Hospital-at-Home and SNF-at-Home programs in October 2022 with $20 million from Flare Capital Partners, and was led by co-founder and chief executive Dave Kerwar, previously chief product officer at Mount Sinai Health System, with Dr. Chi Huang as chief medical officer and Dave Zimmerman as chief operating officer. The company raised a $30 million Series B in September 2023 led by HealthQuest Capital, and in February 2024 released Inbound InHome, a proprietary patient-management and analytics platform for advanced care in the home: AI/ML-assisted identification and eligibility screening of candidate patients, device-agnostic biometric monitoring across devices, wearables and in-home sensors, a virtual care module carrying real-time video, audio, text and alerting between patient and care team, a workflow application automating logistics across the care episode, supply-chain management, and integration points into multiple EMRs. Inbound Health ceased operations in December 2025 after regulatory uncertainty over the federal Acute Hospital Care at Home (AHCAH) waiver stalled its next financing round; MedArrive acquired its AI-backed care-navigation technology assets in March 2026. Inbound InHome was sold only under signed health-system and health-plan agreements, and no public developer portal, API reference, SDK, or machine-readable specification (OpenAPI, AsyncAPI, GraphQL SDL, MCP manifest or A2A agent card) was ever published on an Inbound Health host. Both inboundhealth.com and www.inboundhealth.com now fail at the origin behind Cloudflare (HTTP 526) and every api/docs/developer/app/portal/status subdomain has been removed from DNS, so there is no live API surface to catalog. This profile is retained as a historical record.
 
-## API surface
+**Areas:** Company · Defunct · Healthcare · Hospital at Home · Home Health · Remote Patient Monitoring · Value-Based Care · Care Coordination · Health Systems · Digital Health
 
-None. Inbound InHome was sold only under signed health-system and health-plan agreements; no public
-developer portal, API reference, SDK, or machine-readable specification (OpenAPI, AsyncAPI, GraphQL
-SDL, MCP manifest or A2A agent card) was ever published on an Inbound Health host.
+## Inbound Health on APIs.io (historical record)
 
-Probed 2026-08-23:
+Everything profiled for Inbound Health is published on APIs.io rather than in this repository. Start at the provider page — **[apis.io/providers/inbound-health/](https://apis.io/providers/inbound-health/)** — or go straight to one of the APIs or properties below.
 
-| Probe | Result |
-|---|---|
-| `https://inboundhealth.com/` | `526` — Cloudflare edge is live, origin is gone |
-| `https://inboundhealth.com/openapi.json` (and `/swagger.json`, `/api-docs`, `/docs`, `/llms.txt`) | `526` |
-| every `https://inboundhealth.com/.well-known/*` path | `526` |
-| `http://inboundhealth.com/<any path>` | `404`, byte-identical 1,957-byte "Site is not available" page |
-| `api.` / `docs.` / `developer.` / `app.` / `portal.` / `status.inboundhealth.com` | no DNS record |
-| `https://github.com/InboundHealth` | organization exists, **0 public repositories** |
+### Published properties
 
-The domain is still registered to the company (GoDaddy, registry expiry 2027-01-06) and MX still
-routes to Microsoft 365, but nothing is served. Because the site is confirmed dead it is
-deliberately **not** wired as a `Website` pointer. The previous `Website` pointer on this profile
-(`https://www.nasdaqprivatemarket.com/`) was the secondary-market venue this company was harvested
-from — not Inbound Health's own web presence — and has been removed.
+Each property below is a page on APIs.io carrying the machine-readable artifact and what it says.
 
-## Artifacts
+#### Security (1)
 
-- `well-known/inbound-health-well-known.yml` — the full `/.well-known/` and contract-discovery
-  probe, including the negative controls. Records an absence; no `WellKnown` pointer is emitted.
-- `security/inbound-health-domain-security.yml` — DNS/TLS posture of the retained domain: no
-  DNSSEC, no CAA, no DMARC, no HSTS, and **two conflicting `v=spf1` records**, which makes SPF
-  evaluation permerror for the whole domain under RFC 7208.
+Authentication, trust centre, and vulnerability disclosure.
+
+- [Inbound Health Domain Security](https://apis.io/security/inbound-health/inbound-health-domain-security/)
+
+## API Evangelist rating
+
+**Not rated** — this company is recorded as no longer operating, so no score is published. If it is in fact operating, say so on this repository and it will be re-profiled.
+
+## How this profile is made
+
+API Evangelist profiles a company's public API surface the way a developer would find it: the website, developer portal and documentation, the specifications it publishes, its public repositories, and its pricing, status and changelog pages. From that it derives the properties above — contracts split per API, workflows, schemas, collections, governance rules, plans and rate limits — and scores them against the published [Kin Score rubric](https://github.com/api-evangelist/kin-score).
+
+The artifacts are published on [APIs.io](https://apis.io), not in this repository. This repository is the public record for Inbound Health: the place to say something is wrong, missing or out of date, and to ask for a re-score or a removal.
+
+## Open an issue
+
+- **Something about this listing** — a wrong description, a missing API, a stale artifact or a question about the rating: [open an issue on this repository](https://github.com/api-evangelist/inbound-health/issues/new).
+- **A new API, or one that is not in the catalog yet** — [submit it on APIs.io](https://apis.io/add/).
+- **Anything else** — [the APIs.io inbox](https://github.com/api-search/inbox/issues/new) or [info@apievangelist.com](mailto:info@apievangelist.com).
